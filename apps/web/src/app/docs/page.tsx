@@ -247,6 +247,13 @@ export default function DocsPage() {
     setTimeout(() => setCopiedInstall(false), 2000);
   };
 
+  const slugify = (text: string) => {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+  };
+
   // Render specific content if available, otherwise generic text
   const renderContent = () => {
     if (activeSection === "Quickstart") {
@@ -275,7 +282,10 @@ export default function DocsPage() {
           </div>
 
           <div className="mb-12">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2
+              id="install-the-sdk"
+              className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 scroll-mt-20"
+            >
               <Terminal className="w-5 h-5 text-gray-400" />
               Install the SDK
             </h2>
@@ -298,7 +308,12 @@ export default function DocsPage() {
           <div className="space-y-12">
             {activeFramework.steps.map((step, idx) => (
               <div key={idx} className="relative">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+                <h3
+                  id={slugify(step.title)}
+                  className="text-lg font-bold text-gray-900 mb-2 scroll-mt-20"
+                >
+                  {step.title}
+                </h3>
                 <p className="text-gray-600 mb-4">{step.description}</p>
 
                 <div className="rounded-xl border border-gray-200 overflow-hidden shadow-sm group">
@@ -331,7 +346,10 @@ export default function DocsPage() {
             ))}
           </div>
 
-          <div className="mt-16 p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 shadow-sm relative overflow-hidden">
+          <div
+            id="next-steps"
+            className="mt-16 p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 shadow-sm relative overflow-hidden scroll-mt-20"
+          >
             <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
               <Zap className="w-32 h-32" />
             </div>
@@ -496,7 +514,7 @@ export default function DocsPage() {
           </div>
         </aside>
 
-        <main className="flex-1 py-10 px-6 lg:px-16 overflow-y-auto">
+        <main className="flex-1 py-10 px-6 lg:px-16 overflow-y-auto scroll-smooth">
           <div className="max-w-4xl mx-auto">
             <div className="mb-4 flex items-center gap-2 text-sm font-medium text-gray-400">
               <span className="hover:text-gray-900 cursor-pointer">Docs</span>
@@ -504,7 +522,10 @@ export default function DocsPage() {
               <span className="text-gray-900">{activeSection}</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            <h1
+              id="overview"
+              className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight scroll-mt-20"
+            >
               {activeSection}
             </h1>
 
@@ -521,26 +542,34 @@ export default function DocsPage() {
             {activeSection === "Quickstart" ? (
               <>
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a href="#overview" className="hover:text-blue-600 transition-colors">
+                    Overview
+                  </a>
+                </li>
+                <li>
+                  <a href="#install-the-sdk" className="hover:text-blue-600 transition-colors">
                     Install the SDK
                   </a>
                 </li>
                 {activeFramework.steps.map((step, idx) => (
                   <li key={idx}>
-                    <a href="#" className="hover:text-blue-600 transition-colors line-clamp-1">
+                    <a
+                      href={`#${slugify(step.title)}`}
+                      className="hover:text-blue-600 transition-colors line-clamp-1"
+                    >
                       {step.title}
                     </a>
                   </li>
                 ))}
                 <li>
-                  <a href="#" className="hover:text-blue-600 transition-colors">
+                  <a href="#next-steps" className="hover:text-blue-600 transition-colors">
                     Next Steps
                   </a>
                 </li>
               </>
             ) : (
               <li>
-                <a href="#" className="text-blue-600 transition-colors">
+                <a href="#overview" className="text-blue-600 transition-colors">
                   Overview
                 </a>
               </li>
