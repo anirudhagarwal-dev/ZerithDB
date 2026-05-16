@@ -6,9 +6,9 @@ export default function FrameworkSection() {
           Works seamlessly with your favorite frameworks
         </h2>
 
-        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 text-gray-800 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 text-gray-800 transition-all duration-500">
           {/* Next.js Logo */}
-          <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
+          <div className="flex items-center gap-2 font-bold text-xl tracking-tight animate-float">
             <svg
               viewBox="0 0 180 36"
               height="22"
@@ -24,7 +24,7 @@ export default function FrameworkSection() {
           </div>
 
           {/* React Logo */}
-          <div className="flex items-center gap-2 font-semibold text-xl text-[#61DAFB]">
+          <div className="flex items-center gap-2 font-semibold text-xl text-[#61DAFB] animate-float-delayed">
             <svg
               viewBox="-11.5 -10.23174 23 20.46348"
               height="28"
@@ -42,7 +42,7 @@ export default function FrameworkSection() {
           </div>
 
           {/* Vue Logo */}
-          <div className="flex items-center gap-2 font-semibold text-xl text-[#41B883]">
+          <div className="flex items-center gap-2 font-semibold text-xl text-[#41B883] animate-float">
             <svg viewBox="0 0 118 100" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor" d="M0 0h24L59 60l35-60h24L59 100 0 0z" />
               <path fill="#34495E" d="M24 0h24l11 19 11-19h24L59 60 24 0z" />
@@ -51,12 +51,12 @@ export default function FrameworkSection() {
           </div>
 
           {/* Astro Logo */}
-          <div className="flex items-center gap-1 font-bold text-2xl tracking-tighter text-[#FF5D01]">
+          <div className="flex items-center gap-1 font-bold text-2xl tracking-tighter text-[#FF5D01] animate-float-delayed">
             <span>astro</span>
           </div>
 
           {/* Nuxt Logo */}
-          <div className="flex items-center gap-2 font-bold text-2xl tracking-tight text-[#00C58E]">
+          <div className="flex items-center gap-2 font-bold text-2xl tracking-tight text-[#00C58E] animate-float">
             <svg viewBox="0 0 100 100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor" d="M50 10 L90 80 L10 80 Z" opacity="0.3" />
               <path fill="currentColor" d="M60 30 L95 90 L25 90 Z" />
@@ -65,7 +65,7 @@ export default function FrameworkSection() {
           </div>
 
           {/* Python Logo */}
-          <div className="flex items-center gap-2 font-semibold text-xl text-[#3776AB]">
+          <div className="flex items-center gap-2 font-semibold text-xl text-[#3776AB] animate-float-delayed">
             <svg
               viewBox="0 0 448 512"
               height="28"
