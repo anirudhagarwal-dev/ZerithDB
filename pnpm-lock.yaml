@@ -249,6 +249,9 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
     devDependencies:
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.18
       '@types/prompts':
         specifier: ^2.4.9
         version: 2.4.9
