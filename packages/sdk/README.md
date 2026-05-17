@@ -107,15 +107,38 @@ await db.connect("my-app")
 
 ## 🏗️ Architecture Overview
 
-ZerithDB is built on a "thick client" philosophy:
-- **CRDT Engine**: Uses Yjs-powered conflict-free replicated data types to ensure all peers converge on the same state without a central server.
-- **IndexedDB**: Local storage via Dexie for 0ms latency and full offline support.
-- **WebRTC**: Direct peer-to-peer data channels for real-time updates.
-- **Signaling**: A lightweight relay used only for the initial peer discovery and handshake.
+ZerithDB follows a **thick-client, local-first architecture**. Unlike traditional web apps that treat the browser as a thin view into a central database, ZerithDB moves the database, synchronization logic, and networking directly into the client.
+
+### Core Components
+
+- **CRDT Engine (Yjs)**: The heart of ZerithDB. Every collection is backed by a Yjs `Y.Doc`. This ensures that concurrent edits from multiple peers always converge to the same state without a central authority.
+- **IndexedDB (Dexie)**: Provides persistent, high-performance local storage. All writes are synchronous to IndexedDB first, ensuring 0ms latency and full offline capability.
+- **WebRTC Mesh**: Direct peer-to-peer data channels via `simple-peer`. Peers form a resilient mesh network to propagate CRDT updates with minimal latency.
+- **Signaling Service**: A lightweight WebSocket relay used *only* for initial peer discovery and the WebRTC handshake. Once connected, peers communicate directly.
+
+### Data Flow
+
+```mermaid
+flowchart TD
+    User([User Action]) -->|Mutation| SDK[ZerithDB SDK]
+    SDK -->|Write| IDB[(IndexedDB)]
+    SDK -->|Update| CRDT[CRDT Engine]
+    CRDT -->|Delta| Net[P2P Network]
+    Net <-->|WebRTC| Peers[Connected Peers]
+    
+    Peers -->|Remote Delta| Net
+    Net -->|Apply| CRDT
+    CRDT -->|Reactive Update| IDB
+    IDB -->|Live Query| UI([Application UI])
+```
 
 ## ❓ Troubleshooting
 
 Common issues and their solutions can be found in our [Troubleshooting Guide](https://zerithdb.netlify.app/docs/troubleshooting).
+
+### Common Scenarios
+- **Connection Fails**: Ensure your signaling URL is reachable. If you're behind a strict corporate firewall, you may need to configure custom [ICE servers](https://zerithdb.netlify.app/docs/troubleshooting#webrtc-nat-issue).
+- **Persistence Issues**: ZerithDB requires IndexedDB. Ensure your browser is not in a restricted "Private/Incognito" mode that disables storage.
 
 ## 🤝 Contributing
 
