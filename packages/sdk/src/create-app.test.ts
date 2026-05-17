@@ -1,5 +1,5 @@
 import "fake-indexeddb/auto";
-import { describe, it, expect, vi, afterAll } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import { createApp } from "./create-app.js";
 
 describe("createApp", () => {
