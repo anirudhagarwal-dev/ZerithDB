@@ -57,3 +57,24 @@ export interface SyncPlugin {
     update: Uint8Array
   ) => Uint8Array | null | Promise<Uint8Array | null>;
 }
+
+/** State for an active speaker in a video call. */
+export interface ActiveSpeakerState {
+  /** Peer ID of the current active speaker */
+  peerId: string | null;
+}
+
+/** State for a video participant. */
+export interface VideoParticipantState {
+  /** Whether the participant is muted */
+  muted: {
+    audio: boolean;
+    video: boolean;
+  };
+  /** List of media streams published by the participant */
+  streams: Array<{
+    id: string;
+    kind: "camera" | "screen";
+    label: string;
+  }>;
+}
