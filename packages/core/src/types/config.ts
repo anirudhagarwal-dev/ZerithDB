@@ -43,6 +43,16 @@ export interface SyncConfig {
     /** Throttle broadcasts to this frequency (ms). @default 0 (no throttle) */
     throttleMs?: number;
   };
+  /**
+   * Configuration options for low-latency ephemeral sync state.
+   */
+  ephemeral?: EphemeralConfig;
+}
+
+export interface EphemeralConfig {
+  cleanupIntervalMs?: number;
+  throttleMs?: number;
+  staleAfterMs?: number;
 }
 
 export interface AuthConfig {
