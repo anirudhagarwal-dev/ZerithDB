@@ -30,6 +30,14 @@ export interface AwarenessState {
   [key: string]: unknown;
 }
 
+/** Represents the ephemeral state of a peer. */
+export interface EphemeralPeerState<TState extends Record<string, unknown> = Record<string, unknown>> {
+  peerId: string;
+  state: TState;
+  sequence: number;
+  updatedAt: number;
+}
+
 export interface SyncPlugin {
   id: string;
   version: number;

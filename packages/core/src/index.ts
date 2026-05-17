@@ -23,4 +23,10 @@ export type {
 } from "./types/db.js";
 export type { PeerId, PeerInfo, RoomId, NetworkMessage } from "./types/network.js";
 export type { Identity, PublicKey, Signature } from "./types/auth.js";
-export type { SyncUpdate, SyncState, AwarenessState, SyncPlugin } from "./types/sync.js";
+export type {
+  SyncUpdate,
+  SyncState,
+  AwarenessState,
+  EphemeralPeerState,
+  SyncPlugin,
+} from "./types/sync.js";

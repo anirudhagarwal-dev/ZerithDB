@@ -72,6 +72,11 @@ export class NetworkManager extends EventEmitter<NetworkEvents> {
     return this.activeTransportType;
   }
 
+  /** This peer's unique identifier */
+  get peerId(): PeerId {
+    return this.localPeerId;
+  }
+
   /**
    * Returns the ordered list of signaling URLs to try.
    * Supports both signalingUrls (array) and signalingUrl (single).

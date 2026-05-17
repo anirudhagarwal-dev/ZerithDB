@@ -33,6 +33,16 @@ export interface SyncConfig {
    * @default "auto"
    */
   transport?: "auto" | "websocket" | "polling";
+
+  /** Ephemeral sync configuration */
+  ephemeral?: {
+    /** How often to prune stale peers (ms). @default 5000 */
+    cleanupIntervalMs?: number;
+    /** Mark a peer as stale after this period of inactivity (ms). @default 10000 */
+    staleAfterMs?: number;
+    /** Throttle broadcasts to this frequency (ms). @default 0 (no throttle) */
+    throttleMs?: number;
+  };
 }
 
 export interface AuthConfig {

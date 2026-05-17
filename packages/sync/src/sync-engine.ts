@@ -6,6 +6,7 @@ import type { DbClient } from "zerithdb-db";
 import type { NetworkManager } from "zerithdb-network";
 import { InboxQueue } from "./queue/InboxQueue.js";
 import { OutboxQueue } from "./queue/OutboxQueue.js";
+import { EphemeralStateManager } from "./ephemeral-state.js";
 import { bytesToBase64, base64ToBytes } from "zerithdb-utils";
 
 type SyncEvents = {
@@ -24,6 +25,7 @@ export class SyncEngine extends EventEmitter<SyncEvents> {
   private readonly persistences = new Map<string, IndexeddbPersistence>();
   readonly outbox: OutboxQueue<Uint8Array>;
   readonly inbox: InboxQueue<Uint8Array>;
+  readonly ephemeral: EphemeralStateManager;
   private _enabled = false;
   private _state: SyncState = { synced: false, pendingUpdates: 0, connectedPeers: 0 };
   private plugins = new Map<string, SyncPlugin>();
@@ -40,6 +42,7 @@ export class SyncEngine extends EventEmitter<SyncEvents> {
     super();
     this.outbox = new OutboxQueue(config.appId);
     this.inbox = new InboxQueue(config.appId);
+    this.ephemeral = new EphemeralStateManager(config, network);
     this.onPeerUpdate = this.onPeerUpdate.bind(this);
     this.onPeerConnected = this.onPeerConnected.bind(this);
     this.onPeerDisconnected = this.onPeerDisconnected.bind(this);

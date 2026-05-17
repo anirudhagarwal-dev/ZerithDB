@@ -1,14 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterAll } from "vitest";
+import "fake-indexeddb/auto";
+import { describe, it, expect, vi, afterAll } from "vitest";
 import { createApp } from "./create-app.js";
-import { indexedDB, IDBKeyRange } from "fake-indexeddb";
 
 describe("createApp", () => {
   const apps: any[] = [];
-
-  beforeEach(() => {
-    vi.stubGlobal("indexedDB", indexedDB);
-    vi.stubGlobal("IDBKeyRange", IDBKeyRange);
-  });
 
   afterAll(async () => {
     // Ensure all apps are disposed to avoid leaking async tasks or IndexedDB handles
