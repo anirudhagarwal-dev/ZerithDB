@@ -40,9 +40,3 @@ export type {
   ActiveSpeakerState,
   VideoParticipantState,
 } from "./types/sync.js";
-  SyncPlugin,
-  EphemeralPeerState,
-  ActiveSpeakerState,
-  VideoParticipantState,
-} from "./types/sync.js";
-

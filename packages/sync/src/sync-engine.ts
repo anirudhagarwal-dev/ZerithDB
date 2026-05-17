@@ -8,7 +8,6 @@ import { InboxQueue } from "./queue/InboxQueue.js";
 import { OutboxQueue } from "./queue/OutboxQueue.js";
 import { EphemeralStateManager } from "./ephemeral-state.js";
 import { bytesToBase64, base64ToBytes } from "zerithdb-utils";
-import { EphemeralStateManager } from "./ephemeral-state.js";
 
 type SyncEvents = {
   "state:change": SyncState;
@@ -29,7 +28,6 @@ export class SyncEngine extends EventEmitter<SyncEvents> {
   private readonly persistences = new Map<string, IndexeddbPersistence>();
   readonly outbox: OutboxQueue<Uint8Array>;
   readonly inbox: InboxQueue<Uint8Array>;
-  readonly ephemeral: EphemeralStateManager;
   private _enabled = false;
   private _state: SyncState = { synced: false, pendingUpdates: 0, connectedPeers: 0 };
   private plugins = new Map<string, SyncPlugin>();
