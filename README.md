@@ -130,6 +130,22 @@ const app = createApp({
 });
 ```
 
+## Documentation Navigation
+
+New contributors and developers can use the following documents to better understand the project structure and workflow:
+
+- [Architecture Overview](ARCHITECTURE.md)
+- [Roadmap](ROADMAP.md)
+- [Contributing Guide](CONTRIBUTING.md)
+
+## Recommended Reading Order
+
+For the best onboarding experience:
+
+1. Read the README for project overview
+2. Explore the architecture documentation
+3. Review the roadmap for planned features
+4. Read contribution guidelines before contributing
 ### Local Cloud Backups
 
 ```typescript

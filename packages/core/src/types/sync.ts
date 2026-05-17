@@ -1,3 +1,5 @@
+import type { MediaStreamMetadata } from "./network.js";
+
 /** A CRDT update payload to be applied or transmitted to peers. */
 export interface SyncUpdate {
   /** Name of the collection this update belongs to */
@@ -58,6 +60,7 @@ export interface SyncPlugin {
   ) => Uint8Array | null | Promise<Uint8Array | null>;
 }
 
+<<<<<<< HEAD
 /** State for an active speaker in a video call. */
 export interface ActiveSpeakerState {
   /** Peer ID of the current active speaker */
@@ -67,10 +70,32 @@ export interface ActiveSpeakerState {
 /** State for a video participant. */
 export interface VideoParticipantState {
   /** Whether the participant is muted */
+=======
+export interface EphemeralPeerState<
+  TState extends Record<string, unknown> = Record<string, unknown>,
+> {
+  peerId: string;
+  state: TState;
+  sequence: number;
+  updatedAt: number;
+}
+
+export interface ActiveSpeakerState {
+  peerId: string;
+  streamId?: string;
+  trackId?: string;
+  audioLevel?: number;
+  updatedAt: number;
+}
+
+export interface VideoParticipantState {
+  peerId: string;
+>>>>>>> 3ee754f058fda88cc281fa9c819b4458af97c289
   muted: {
     audio: boolean;
     video: boolean;
   };
+<<<<<<< HEAD
   /** List of media streams published by the participant */
   streams: Array<{
     id: string;
@@ -78,3 +103,10 @@ export interface VideoParticipantState {
     label: string;
   }>;
 }
+=======
+  activeSpeaker?: ActiveSpeakerState;
+  streams: Record<string, MediaStreamMetadata>;
+  updatedAt: number;
+}
+
+>>>>>>> 3ee754f058fda88cc281fa9c819b4458af97c289
